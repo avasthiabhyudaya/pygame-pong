@@ -19,8 +19,8 @@ paddle_height = 100
 p1_x_pos = 10
 p1_y_pos = HEIGHT/2 - paddle_height/2
 
-p1_x_pos = WIDTH - paddle_width - 10
-p1_y_pos = HEIGHT/2 - paddle_height/2
+p2_x_pos = WIDTH - paddle_width - 10
+p2_y_pos = HEIGHT/2 - paddle_height/2
 
 p1_score = 0
 p2_score = 0
@@ -41,8 +41,8 @@ ball_y_vel = 0
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
 def draw_objects():
-	pygame.draw.rect(screen, WHITE, int(p1_x_pos), int(p1_y_pos), paddle_width, paddle_height)
-	pygame.draw.rect(screen, WHITE, int(p2_x_pos), int(p2_y_pos), paddle_width, paddle_height)
+	pygame.draw.rect(screen, WHITE, (int(p1_x_pos), int(p1_y_pos), paddle_width, paddle_height))
+	pygame.draw.rect(screen, WHITE, (int(p2_x_pos), int(p2_y_pos), paddle_width, paddle_height))
 	pygame.draw.circle(screen, WHITE, (ball_x_pos, ball_y_pos), ball_width)
 	score = game_font.render(f"{str(p1_score)} - {str(p2_score)}", False, WHITE)
 	screen.blit(score, (WIDTH / 2, 30))
@@ -104,7 +104,7 @@ def apply_ball_movement():
 	pygame.display.flip()
 
 	running = True
-	while runinng:
+	while running:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				running = False
@@ -129,9 +129,9 @@ def apply_ball_movement():
 				if event.key == pygame.K_DOWN:
 					p2_down = False
 
-	screen_fill(BLACK)
-	apply_player_movement()
-	apply_ball_movement()
-	draw_objects()
-	pygame.display.flip()
-	pygame.time.wait(delay)
+screen.fill(BLACK)
+apply_player_movement()
+apply_ball_movement()
+draw_objects()
+pygame.display.flip()
+pygame.time.wait(delay)
